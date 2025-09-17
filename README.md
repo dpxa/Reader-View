@@ -8,7 +8,7 @@ Functionality:
 
 A user can open a file to read in their browser. The application will not save that file as data.
 
-The application will save the bookmarks that a user has created into cache. 
+The application will save the bookmarks that a user has created into cache.
 
 It will offer the user a way to save the pdf with a bookmark embedded as well.
 
@@ -25,7 +25,6 @@ Export/Import bookmark functionality.
 Dark mode.
 
 Undo/Redo bookmarks.
-
 
 Frontend framework:
 React
