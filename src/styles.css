@@ -54,7 +54,7 @@ body {
 .app-background {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 48px 16px;
   background: linear-gradient(
@@ -62,11 +62,12 @@ body {
     var(--gradient-start),
     var(--gradient-end)
   );
+  background-attachment: fixed;
 }
 
 .container {
   width: 100%;
-  max-width: 920px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -120,9 +121,20 @@ body {
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--static-text);
+  background: var(--surface-card);
+  border: 1px solid var(--border-input);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-card-alt);
+}
+
+.btn-secondary:disabled {
+  background: var(--surface-muted);
+  border: 1px solid var(--border-input);
+  color: rgba(0, 0, 0, 0.4);
+  cursor: not-allowed;
 }
 
 .link {
@@ -141,6 +153,66 @@ body {
 
 [data-theme="dark"] .muted {
   color: rgba(230, 238, 248, 0.6);
+}
+
+.file-input {
+  padding: 8px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-small);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+}
+
+.pdf-viewer {
+  text-align: center;
+  max-width: none;
+}
+
+.pdf-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.page-info {
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 100px;
+}
+
+.pdf-canvas {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow-medium);
+  display: block;
+  margin: 0 auto;
+}
+
+[data-theme="dark"] .pdf-canvas {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--static-text);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .btn-secondary:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
 }
 
 @media (max-width: 520px) {
