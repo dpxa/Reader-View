@@ -37,8 +37,18 @@
           <button id="prevPage" class="btn btn-secondary">Previous</button>
           <span id="pageInfo" class="page-info">Page 1 of 1</span>
           <button id="nextPage" class="btn btn-secondary">Next</button>
+          <button id="bookmarkBtn" class="bookmark-btn">Bookmark Page</button>
         </div>
         <canvas id="pdfCanvas" class="pdf-canvas"></canvas>
+
+        <div
+          class="bookmarks-section"
+          id="bookmarksSection"
+          style="display: none"
+        >
+          <h3>Bookmarks</h3>
+          <div class="bookmarks-list" id="bookmarksList"></div>
+        </div>
       </section>
 
       <footer class="muted">
