@@ -49,6 +49,7 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
+  transition: color var(--transition-duration-fast);
 }
 
 .app-background {
@@ -89,6 +90,8 @@ body {
   box-shadow: var(--shadow-medium);
   padding: 28px;
   margin-bottom: 16px;
+  transition: background var(--transition-duration-fast),
+    box-shadow var(--transition-duration-fast);
 }
 
 .card > * + * {
@@ -124,6 +127,7 @@ body {
   background: var(--surface-card);
   border: 1px solid var(--border-input);
   color: var(--text-primary);
+  transition: all var(--transition-duration-fast);
 }
 
 .btn-secondary:hover {
@@ -162,6 +166,7 @@ body {
   background: var(--surface-card);
   color: var(--text-primary);
   font-family: var(--font-family);
+  transition: all var(--transition-duration-fast);
 }
 
 .pdf-viewer {
@@ -175,6 +180,28 @@ body {
   justify-content: center;
   gap: 16px;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.pdf-controls::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: #ffd700;
+  border-radius: var(--radius-small);
+  opacity: 0;
+  transition: opacity var(--transition-duration-fast);
+}
+
+.pdf-controls.has-bookmark::after {
+  opacity: 1;
+}
+
+[data-theme="dark"] .pdf-controls::after {
+  background: #1e90ff;
 }
 
 .bookmark-btn {
@@ -186,6 +213,8 @@ body {
   cursor: pointer;
   transition: all var(--transition-duration-fast);
   font-weight: 600;
+  min-width: 160px;
+  text-align: center;
 }
 
 .bookmark-btn:hover {
@@ -206,11 +235,74 @@ body {
   border-top: 1px solid var(--border-input);
 }
 
+.bookmarks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bookmarks-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-export,
+.btn-import {
+  background: var(--brand-primary);
+  color: var(--static-text);
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-duration-fast);
+}
+
+.btn-export:hover,
+.btn-import:hover {
+  background: var(--brand-primary-dark);
+}
+
+.btn-export:disabled {
+  background: var(--surface-muted);
+  color: rgba(0, 0, 0, 0.4);
+  cursor: not-allowed;
+}
+
+[data-theme="dark"] .btn-export:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-import {
+  position: relative;
+}
+
+.import-file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
 .bookmarks-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 12px;
+}
+
+.bookmarks-empty {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-primary);
+  opacity: 0.6;
+  font-size: 0.9rem;
 }
 
 .bookmark-item {
@@ -231,6 +323,7 @@ body {
 .bookmark-page {
   font-weight: 600;
   color: var(--text-primary);
+  transition: color var(--transition-duration-fast);
 }
 
 .bookmark-delete {

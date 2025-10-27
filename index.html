@@ -46,7 +46,21 @@
           id="bookmarksSection"
           style="display: none"
         >
-          <h3>Bookmarks</h3>
+          <div class="bookmarks-header">
+            <h3>Bookmarks</h3>
+            <div class="bookmarks-actions">
+              <button id="exportBookmarks" class="btn-export">Export</button>
+              <button class="btn-import">
+                Import
+                <input
+                  type="file"
+                  id="importBookmarks"
+                  accept=".json"
+                  class="import-file-input"
+                />
+              </button>
+            </div>
+          </div>
           <div class="bookmarks-list" id="bookmarksList"></div>
         </div>
       </section>
@@ -56,6 +70,9 @@
       </footer>
     </main>
 
+    <script src="./src/theme.js" defer></script>
+    <script src="./src/bookmarks.js" defer></script>
+    <script src="./src/pdfViewer.js" defer></script>
     <script src="./src/script.js" defer></script>
   </body>
 </html>
