@@ -36,10 +36,26 @@
         <div class="pdf-controls">
           <button id="prevPage" class="btn btn-secondary">Previous</button>
           <span id="pageInfo" class="page-info">Page 1 of 1</span>
+          <input
+            type="number"
+            id="pageInput"
+            class="page-input"
+            min="1"
+            placeholder="Page"
+          />
+          <button id="goToPage" class="btn btn-secondary">Go</button>
           <button id="nextPage" class="btn btn-secondary">Next</button>
           <button id="bookmarkBtn" class="bookmark-btn">Bookmark Page</button>
         </div>
         <canvas id="pdfCanvas" class="pdf-canvas"></canvas>
+
+        <div class="pdf-controls-bottom">
+          <button id="prevPageBottom" class="btn btn-secondary">
+            Previous
+          </button>
+          <span id="pageInfoBottom" class="page-info">Page 1 of 1</span>
+          <button id="nextPageBottom" class="btn btn-secondary">Next</button>
+        </div>
 
         <div
           class="bookmarks-section"

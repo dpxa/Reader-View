@@ -13,6 +13,11 @@ class PDFViewer {
     this.prevBtn = document.getElementById("prevPage");
     this.nextBtn = document.getElementById("nextPage");
     this.pageInfo = document.getElementById("pageInfo");
+    this.pageInput = document.getElementById("pageInput");
+    this.goToPageBtn = document.getElementById("goToPage");
+    this.prevBtnBottom = document.getElementById("prevPageBottom");
+    this.nextBtnBottom = document.getElementById("nextPageBottom");
+    this.pageInfoBottom = document.getElementById("pageInfoBottom");
 
     if (!this.loadPdfBtn) {
       console.error("Load PDF button not found");
@@ -34,6 +39,25 @@ class PDFViewer {
     this.loadPdfBtn.addEventListener("click", () => this.loadPdf());
     this.prevBtn.addEventListener("click", () => this.previousPage());
     this.nextBtn.addEventListener("click", () => this.nextPage());
+    this.goToPageBtn.addEventListener("click", () => this.jumpToPage());
+    this.pageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        this.jumpToPage();
+      }
+    });
+    this.prevBtnBottom.addEventListener("click", () => this.previousPage());
+    this.nextBtnBottom.addEventListener("click", () => this.nextPage());
+    document.addEventListener("keydown", (e) => {
+      if (this.pdfViewer.style.display !== "none") {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          this.previousPage();
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          this.nextPage();
+        }
+      }
+    });
   }
 
   loadPdf() {
@@ -99,8 +123,13 @@ class PDFViewer {
 
   updatePageInfo() {
     this.pageInfo.textContent = `Page ${this.currentPage} of ${this.pdfDoc.numPages}`;
+    this.pageInfoBottom.textContent = `Page ${this.currentPage} of ${this.pdfDoc.numPages}`;
+    this.pageInput.value = this.currentPage;
+    this.pageInput.max = this.pdfDoc.numPages;
     this.prevBtn.disabled = this.currentPage <= 1;
     this.nextBtn.disabled = this.currentPage >= this.pdfDoc.numPages;
+    this.prevBtnBottom.disabled = this.currentPage <= 1;
+    this.nextBtnBottom.disabled = this.currentPage >= this.pdfDoc.numPages;
     this.bookmarkManager.updateBookmarkButton();
   }
 
@@ -116,6 +145,18 @@ class PDFViewer {
     this.currentPage++;
     this.renderPage(this.currentPage);
     this.updatePageInfo();
+  }
+
+  jumpToPage() {
+    const pageNum = parseInt(this.pageInput.value, 10);
+    if (isNaN(pageNum) || pageNum < 1 || pageNum > this.pdfDoc.numPages) {
+      alert(
+        `Please enter a valid page number between 1 and ${this.pdfDoc.numPages}.`
+      );
+      this.pageInput.value = this.currentPage;
+      return;
+    }
+    this.goToPage(pageNum);
   }
 
   goToPage(pageNum) {

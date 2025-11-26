@@ -373,15 +373,39 @@ body {
   color: var(--static-text);
 }
 
-[data-theme="dark"] .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+.page-input {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-small);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  text-align: center;
+  transition: all var(--transition-duration-fast);
 }
 
-[data-theme="dark"] .btn-secondary:disabled {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.4);
-  cursor: not-allowed;
+.page-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+[data-theme="dark"] .page-input {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--static-text);
+}
+
+[data-theme="dark"] .page-input:focus {
+  border-color: var(--brand-primary);
+}
+
+.pdf-controls-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 @media (max-width: 520px) {
